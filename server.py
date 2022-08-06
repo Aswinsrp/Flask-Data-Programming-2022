@@ -42,20 +42,20 @@ headers = {
     "X-RapidAPI-Host": "covid-19-statistics.p.rapidapi.com"
 }
 
-provinces = ["California","New York","Texas","Florida","Illinois"]
-yesterday = datetime.now() - timedelta(1)
-currentDate = str(datetime.strftime(yesterday, '%Y-%m-%d'))
+# provinces = ["California","New York","Texas","Florida","Illinois"]
+# yesterday = datetime.now() - timedelta(1)
+# currentDate = str(datetime.strftime(yesterday, '%Y-%m-%d'))
 
-def data_load():
-    for x in provinces:
-        print(x)
-        querystring = {"region_province":x,"iso":"USA","region_name":"US","date":currentDate}
-        r = requests.request("GET", url, headers=headers, params=querystring)
-        if r.status_code == 200:
-            data = r.json()
-            collection_name.insert_one(data)
+# def data_load():
+#     for x in provinces:
+#         print(x)
+#         querystring = {"region_province":x,"iso":"USA","region_name":"US","date":currentDate}
+#         r = requests.request("GET", url, headers=headers, params=querystring)
+#         if r.status_code == 200:
+#             data = r.json()
+#             collection_name.insert_one(data)
 
-schedule.every().day.at("01:40").do(data_load)
+# schedule.every().day.at("01:40").do(data_load)
 
 while 1:
     schedule.run_pending()
